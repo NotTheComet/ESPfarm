@@ -1,22 +1,27 @@
 import express from 'express';
+import * as config from "./config.js";
 import http from 'http';
 
 const app = express();
 
-var version = process.env.NODE_ENV || 'development';
-var serverName = process.env.SERVER_NAME || 'localhost';
-var port = process.env.PORT || 3000;
 
+
+config.getServerConfig('./config/config.json');
 
 
 app.get('/', (req, res) => {
-  res.json({"version": version, "serverName": serverName});
+  res.send("<h1>TODO: DASHBOARD</h6>")
+});
+
+app.get('/api/:query', (req, res) => {
+	if (req.params.query === 'info') {
+		res.json({"version": config.version, "serverName": config.serverName});
+	}
 });
 
 app.post('/node/:query', (req, res) => {
 	var query = req.params.query;
-
   
 });
 
-http.createServer(app).listen(port);
+http.createServer(app).listen(config.port);

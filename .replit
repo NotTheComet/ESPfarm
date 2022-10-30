@@ -1,6 +1,7 @@
 compile = "./.config/build.sh"
 run = "node --enable-source-maps .build/index.js"
 entrypoint = "index.ts"
+hidden = [".config", ".build"]
 
 [languages.typescript]
 pattern = "**/{*.ts,*.js,*.tsx,*.jsx}"
@@ -25,3 +26,5 @@ channel = "stable-21_11"
 
 [gitHubImport]
 requiredFiles = [".replit", "replit.nix", ".config"]
+
+
